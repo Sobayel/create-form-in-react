@@ -5,11 +5,15 @@ const Registration = () => {
     const [email, setEmail] = useState([]);
     const [password, setPassword] = useState([]);
     const [isSubmit, setIsSubmit] = useState(false);
+    const [isChecked, setIsChecked] = useState(false);
 
     // console.log({name:name, email:email, password:password});
 
     const handleSubmit =(event) =>{
         event.preventDefault();
+        if(!isChecked){
+            return;
+        }
         const user ={
             name: name,
             email: email,
@@ -32,6 +36,8 @@ const Registration = () => {
 
                 <label className="mb-2 text-xl ">Password</label>
                 <input onChange={(event)=> setPassword(event.target.value)} type="password" placeholder="Enter your password" className="py-2 px-1 border-2 border-solid border-gray-400 w-full rounded-lg text-lg mb-3" required></input>
+                
+                <input type="checkbox" onChange={(event)=>setIsChecked(event.target.checked)} />Do you agree with our terms and conditions?
 
                 <div className="flex justify-end mt-3">
                         <button type="submit" className="bg-purple-500 rounded h-10 w-24 text-xl hover:bg-gray-300 hover:text-black text-white">
@@ -47,7 +53,6 @@ const Registration = () => {
                     </h1>
                     <p className="text-xl mb-3">Name: {name}</p>
                     <p className="text-xl mb-3">Email: {email}</p>
-                    <p className="text-xl mb-3">Password: {password}</p>
                 </div>
             </div>
             )}
